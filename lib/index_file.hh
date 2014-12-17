@@ -7,11 +7,12 @@
 #include <exception>
 #include <string>
 
+#include <zbackup/exception.hh>
+
 #include "adler32.hh"
 #include "bundle.hh"
 #include "encrypted_file.hh"
 #include "encryption_key.hh"
-#include "ex.hh"
 #include "file.hh"
 #include "nocopy.hh"
 #include "zbackup.pb.h"
@@ -45,9 +46,9 @@ class Reader: NoCopy
   EncryptedFile::InputStream stream;
 
 public:
-  DEF_EX( Ex, "Index file reader exception", std::exception )
-  DEF_EX( exUnsupportedVersion, "Unsupported version of the index file format", Ex )
-  DEF_EX( exIncorrectBundleIdSize, "Incorrect bundle id size encountered", Ex )
+  ZBACKUP_DEF_EX( Ex, "Index file reader exception", std::exception )
+  ZBACKUP_DEF_EX( exUnsupportedVersion, "Unsupported version of the index file format", Ex )
+  ZBACKUP_DEF_EX( exIncorrectBundleIdSize, "Incorrect bundle id size encountered", Ex )
 
   Reader( EncryptionKey const &, string const & fileName );
 

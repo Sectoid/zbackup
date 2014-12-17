@@ -9,7 +9,8 @@
 #include <sys/types.h>
 #include <exception>
 
-#include "ex.hh"
+#include <zbackup/exception.hh>
+
 #include "nocopy.hh"
 
 /// A file which does not employ its own buffering.
@@ -22,11 +23,11 @@ class UnbufferedFile: NoCopy
 {
 public:
 
-  DEF_EX( Ex, "Unbuffered file exception", std::exception )
-  DEF_EX_STR( exCantOpen, "Can't open file", Ex )
-  DEF_EX( exReadError, "File read error", Ex )
-  DEF_EX( exWriteError, "File write error", Ex )
-  DEF_EX( exSeekError, "File seek error", Ex )
+  ZBACKUP_DEF_EX( Ex, "Unbuffered file exception", std::exception )
+  ZBACKUP_DEF_EX_STR( exCantOpen, "Can't open file", Ex )
+  ZBACKUP_DEF_EX( exReadError, "File read error", Ex )
+  ZBACKUP_DEF_EX( exWriteError, "File write error", Ex )
+  ZBACKUP_DEF_EX( exSeekError, "File seek error", Ex )
 
   enum Mode
   {

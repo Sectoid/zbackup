@@ -15,13 +15,14 @@
 #include <string>
 #include <vector>
 
+#include <zbackup/exception.hh>
+
 #include "appendallocator.hh"
 #include "bundle.hh"
 #include "chunk_id.hh"
 #include "dir.hh"
 #include "encryption_key.hh"
 #include "endian.hh"
-#include "ex.hh"
 #include "index_file.hh"
 #include "nocopy.hh"
 #include "rolling_hash.hh"
@@ -84,8 +85,8 @@ class ChunkIndex: NoCopy, IndexProcessor
   Bundle::Id const * lastBundleId;
 
 public:
-  DEF_EX( Ex, "Chunk index exception", std::exception )
-  DEF_EX( exIncorrectChunkIdSize, "Incorrect chunk id size encountered", Ex )
+  ZBACKUP_DEF_EX( Ex, "Chunk index exception", std::exception )
+  ZBACKUP_DEF_EX( exIncorrectChunkIdSize, "Incorrect chunk id size encountered", Ex )
 
   ChunkIndex( EncryptionKey const &, TmpMgr &, string const & indexPath, bool prohibitChunkIndexLoading );
 

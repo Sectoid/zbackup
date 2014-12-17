@@ -7,16 +7,17 @@
 #include <exception>
 #include <string>
 
+#include <zbackup/exception.hh>
+
 #include "encryption_key.hh"
-#include "ex.hh"
 #include "zbackup.pb.h"
 
 namespace StorageInfoFile {
 
 using std::string;
 
-DEF_EX( Ex, "Storage info file exception", std::exception )
-DEF_EX( exUnsupportedVersion, "Unsupported version of the storage info file format", Ex )
+ZBACKUP_DEF_EX( Ex, "Storage info file exception", std::exception )
+ZBACKUP_DEF_EX( exUnsupportedVersion, "Unsupported version of the storage info file format", Ex )
 
 /// Saves the given StorageInfo data into the given file
 void save( string const & fileName, StorageInfo const & );

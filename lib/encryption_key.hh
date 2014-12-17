@@ -7,7 +7,8 @@
 #include <exception>
 #include <string>
 
-#include "ex.hh"
+#include <zbackup/exception.hh>
+
 #include "zbackup.pb.h"
 
 using std::string;
@@ -19,7 +20,7 @@ class EncryptionKey
   char key[ KeySize ];
 
 public:
-  DEF_EX( exInvalidPassword, "Invalid password specified", std::exception )
+  ZBACKUP_DEF_EX( exInvalidPassword, "Invalid password specified", std::exception )
 
   /// Decodes the encryption key from the given info and password. If info is
   /// passed as NULL, the password is ignored and no key is set

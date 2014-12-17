@@ -12,11 +12,13 @@ set_target_properties(zbackup_dynamic PROPERTIES
   VERSION ${ZBACKUP_VERSION}
   SOVERSION ${ZBACKUP_MAJOR_VERSION}
   )
+target_include_directories (zbackup_dynamic PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_library(zbackup_static STATIC ${sourceFiles} ${protoSrcs} ${protoHdrs} )
 
 set_target_properties(zbackup_static PROPERTIES
   OUTPUT_NAME zbackup
+  VERSION ${ZBACKUP_VERSION}
+  SOVERSION ${ZBACKUP_MAJOR_VERSION}
   )
-
-
+target_include_directories (zbackup_static PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

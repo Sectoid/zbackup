@@ -7,7 +7,7 @@
 #include <stddef.h>
 #include <exception>
 
-#include "ex.hh"
+#include <zbackup/exception.hh>
 
 /// What we implement right now is AES-128 in CBC mode with PKCS#7 padding
 namespace Encryption {
@@ -19,7 +19,7 @@ enum
   BlockSize = 16 /// Cipher block size in bytes
 };
 
-DEF_EX( exBadPadding, "Bad padding encountered", std::exception )
+ZBACKUP_DEF_EX( exBadPadding, "Bad padding encountered", std::exception )
 
 /// Encrypts 'size' bytes of the data pointed to by 'in', outputting 'size'
 /// bytes to 'out'. 'key' points to KeySize bytes of the key data. 'iv' points

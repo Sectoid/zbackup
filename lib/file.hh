@@ -9,7 +9,7 @@
 #include <exception>
 #include <string>
 
-#include "ex.hh"
+#include <zbackup/exception.hh>
 
 using std::string;
 
@@ -21,14 +21,14 @@ class File
   size_t writeBufferLeft;
 
 public:
-  DEF_EX( Ex, "File exception", std::exception )
-  DEF_EX_STR( exCantOpen, "Can't open", Ex )
-  DEF_EX( exReadError, "Error reading from file", Ex )
-  DEF_EX( exShortRead, "Short read from the file", exReadError )
-  DEF_EX( exWriteError, "Error writing to the file", Ex )
-  DEF_EX( exSeekError, "File seek error", Ex )
-  DEF_EX_STR( exCantErase, "Can't erase file", Ex )
-  DEF_EX_STR( exCantRename, "Can't rename file", Ex )
+  ZBACKUP_DEF_EX( Ex, "File exception", std::exception )
+  ZBACKUP_DEF_EX_STR( exCantOpen, "Can't open", Ex )
+  ZBACKUP_DEF_EX( exReadError, "Error reading from file", Ex )
+  ZBACKUP_DEF_EX( exShortRead, "Short read from the file", exReadError )
+  ZBACKUP_DEF_EX( exWriteError, "Error writing to the file", Ex )
+  ZBACKUP_DEF_EX( exSeekError, "File seek error", Ex )
+  ZBACKUP_DEF_EX_STR( exCantErase, "Can't erase file", Ex )
+  ZBACKUP_DEF_EX_STR( exCantRename, "Can't rename file", Ex )
 
   enum OpenMode
   {

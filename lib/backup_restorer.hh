@@ -9,8 +9,9 @@
 #include <string>
 #include <set>
 
+#include <zbackup/exception.hh>
+
 #include "chunk_storage.hh"
-#include "ex.hh"
 
 /// Generic interface to stream data out
 class DataSink
@@ -23,8 +24,8 @@ public:
 /// Restores the backup
 namespace BackupRestorer {
 
-DEF_EX( Ex, "Backup restorer exception", std::exception )
-DEF_EX( exTooManyBytesToEmit, "A backup record asks to emit too many bytes", Ex )
+ZBACKUP_DEF_EX( Ex, "Backup restorer exception", std::exception )
+ZBACKUP_DEF_EX( exTooManyBytesToEmit, "A backup record asks to emit too many bytes", Ex )
 
 typedef std::set< ChunkId > ChunkSet;
 

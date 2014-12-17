@@ -11,8 +11,9 @@
 #include <string>
 #include <utility>
 
+#include <zbackup/exception.hh>
+
 #include "encryption_key.hh"
-#include "ex.hh"
 #include "nocopy.hh"
 #include "static_assert.hh"
 #include "zbackup.pb.h"
@@ -57,11 +58,11 @@ class Reader: NoCopy
   Chunks chunks;
 
 public:
-  DEF_EX( Ex, "Bundle reader exception", std::exception )
-  DEF_EX( exBundleReadFailed, "Bundle read failed", Ex )
-  DEF_EX( exUnsupportedVersion, "Unsupported version of the index file format", Ex )
-  DEF_EX( exTooMuchData, "More data than expected in a bundle", Ex )
-  DEF_EX( exDuplicateChunks, "Chunks with the same id found in a bundle", Ex )
+  ZBACKUP_DEF_EX( Ex, "Bundle reader exception", std::exception )
+  ZBACKUP_DEF_EX( exBundleReadFailed, "Bundle read failed", Ex )
+  ZBACKUP_DEF_EX( exUnsupportedVersion, "Unsupported version of the index file format", Ex )
+  ZBACKUP_DEF_EX( exTooMuchData, "More data than expected in a bundle", Ex )
+  ZBACKUP_DEF_EX( exDuplicateChunks, "Chunks with the same id found in a bundle", Ex )
 
   Reader( string const & fileName, EncryptionKey const & key,
       bool prohibitProcessing = false );
@@ -88,8 +89,8 @@ class Creator
   string payload;
 
 public:
-  DEF_EX( Ex, "Bundle creator exception", std::exception )
-  DEF_EX( exBundleWriteFailed, "Bundle write failed", Ex )
+  ZBACKUP_DEF_EX( Ex, "Bundle creator exception", std::exception )
+  ZBACKUP_DEF_EX( exBundleWriteFailed, "Bundle write failed", Ex )
 
   /// Adds a chunk with the given id
   void addChunk( string const & chunkId, void const * data, size_t size );

@@ -9,14 +9,14 @@
 #include <google/protobuf/message_lite.h>
 #include <exception>
 
-#include "ex.hh"
+#include <zbackup/exception.hh>
 
 /// Some utilities for protobuffer messages
 namespace Message {
 
-DEF_EX( Ex, "Message exception", std::exception )
-DEF_EX_STR( exCantParse, "Can't parse message", Ex )
-DEF_EX_STR( exCantSerialize, "Can't serialize message", Ex )
+ZBACKUP_DEF_EX( Ex, "Message exception", std::exception )
+ZBACKUP_DEF_EX_STR( exCantParse, "Can't parse message", Ex )
+ZBACKUP_DEF_EX_STR( exCantSerialize, "Can't serialize message", Ex )
 
 using google::protobuf::io::ZeroCopyOutputStream;
 using google::protobuf::io::ZeroCopyInputStream;

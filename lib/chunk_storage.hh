@@ -10,11 +10,12 @@
 #include <utility>
 #include <vector>
 
+#include <zbackup/exception.hh>
+
 #include "bundle.hh"
 #include "chunk_id.hh"
 #include "chunk_index.hh"
 #include "encryption_key.hh"
-#include "ex.hh"
 #include "file.hh"
 #include "index_file.hh"
 #include "mt.hh"
@@ -30,7 +31,7 @@ using std::string;
 using std::vector;
 using std::pair;
 
-DEF_EX( Ex, "Chunk storage exception", std::exception )
+ZBACKUP_DEF_EX( Ex, "Chunk storage exception", std::exception )
 
 /// Allows adding new chunks to the storage by filling up new bundles with them
 /// and writing new index files
@@ -117,7 +118,7 @@ private:
 class Reader: NoCopy
 {
 public:
-  DEF_EX_STR( exNoSuchChunk, "no such chunk found:", Ex )
+  ZBACKUP_DEF_EX_STR( exNoSuchChunk, "no such chunk found:", Ex )
 
   Reader( StorageInfo const &, EncryptionKey const &, ChunkIndex & index,
           string const & bundlesDir, size_t maxCacheSizeBytes );

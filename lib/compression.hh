@@ -4,15 +4,16 @@
 #ifndef COMPRESSION_HH_INCLUDED__
 #define COMPRESSION_HH_INCLUDED__
 
+#include <zbackup/exception.hh>
+
 #include "sptr.hh"
-#include "ex.hh"
 #include "nocopy.hh"
 
 
 namespace Compression {
 
-DEF_EX( Ex, "Compression exception", std::exception )
-DEF_EX_STR( exUnsupportedCompressionMethod, "Unsupported compression method: ", Ex )
+ZBACKUP_DEF_EX( Ex, "Compression exception", std::exception )
+ZBACKUP_DEF_EX_STR( exUnsupportedCompressionMethod, "Unsupported compression method: ", Ex )
 
 
 // used for encoding or decoding

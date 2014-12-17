@@ -11,10 +11,11 @@
 #include <exception>
 #include <vector>
 
+#include <zbackup/exception.hh>
+
 #include "adler32.hh"
 #include "encryption.hh"
 #include "encryption_key.hh"
-#include "ex.hh"
 #include "unbuffered_file.hh"
 
 /// Google's ZeroCopyStream implementations which read and write files encrypted
@@ -27,11 +28,11 @@
 /// everything else works the same way otherwise
 namespace EncryptedFile {
 
-DEF_EX( Ex, "Encrypted file exception", std::exception )
-DEF_EX( exFileCorrupted, "encrypted file data is currupted", Ex )
-DEF_EX( exIncorrectFileSize, "size of the encrypted file is incorrect", exFileCorrupted )
-DEF_EX( exReadFailed, "read failed", Ex ) // Only thrown by InputStream::read()
-DEF_EX( exAdlerMismatch, "adler32 mismatch", Ex )
+ZBACKUP_DEF_EX( Ex, "Encrypted file exception", std::exception )
+ZBACKUP_DEF_EX( exFileCorrupted, "encrypted file data is currupted", Ex )
+ZBACKUP_DEF_EX( exIncorrectFileSize, "size of the encrypted file is incorrect", exFileCorrupted )
+ZBACKUP_DEF_EX( exReadFailed, "read failed", Ex ) // Only thrown by InputStream::read()
+ZBACKUP_DEF_EX( exAdlerMismatch, "adler32 mismatch", Ex )
 
 class InputStream: public google::protobuf::io::ZeroCopyInputStream
 {

@@ -9,7 +9,8 @@
 #include <exception>
 #include <string>
 
-#include "ex.hh"
+#include <zbackup/exception.hh>
+
 #include "nocopy.hh"
 
 using std::string;
@@ -17,11 +18,11 @@ using std::string;
 /// Directory-related operations
 namespace Dir {
 
-DEF_EX( Ex, "Directory exception", std::exception )
-DEF_EX_STR( exCantCreate, "Can't create directory", Ex )
-DEF_EX_STR( exCantRemove, "Can't remove directory", Ex )
-DEF_EX_STR( exCantList, "Can't list directory", Ex )
-DEF_EX_STR( exCantGetRealPath, "Can't real path of", Ex )
+ZBACKUP_DEF_EX( Ex, "Directory exception", std::exception )
+ZBACKUP_DEF_EX_STR( exCantCreate, "Can't create directory", Ex )
+ZBACKUP_DEF_EX_STR( exCantRemove, "Can't remove directory", Ex )
+ZBACKUP_DEF_EX_STR( exCantList, "Can't list directory", Ex )
+ZBACKUP_DEF_EX_STR( exCantGetRealPath, "Can't real path of", Ex )
 
 /// Checks whether the given dir exists or not
 bool exists( string const & );

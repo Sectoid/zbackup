@@ -7,7 +7,8 @@
 #include <exception>
 #include <string>
 
-#include "ex.hh"
+#include <zbackup/exception.hh>
+
 #include "chunk_index.hh"
 
 struct Paths
@@ -28,16 +29,16 @@ struct Paths
 class ZBackupBase: public Paths
 {
 public:
-  DEF_EX( Ex, "ZBackup exception", std::exception )
-  DEF_EX_STR( exWontOverwrite, "Won't overwrite existing file", Ex )
-  DEF_EX( exStdinError, "Error reading from standard input", Ex )
-  DEF_EX( exWontReadFromTerminal, "Won't read data from a terminal", exStdinError )
-  DEF_EX( exStdoutError, "Error writing to standard output", Ex )
-  DEF_EX( exWontWriteToTerminal, "Won't write data to a terminal", exStdoutError )
-  DEF_EX( exSerializeError, "Failed to serialize data", Ex )
-  DEF_EX( exParseError, "Failed to parse data", Ex )
-  DEF_EX( exChecksumError, "Checksum error", Ex )
-  DEF_EX_STR( exCantDeriveStorageDir, "The path must be within the backups/ dir:", Ex )
+  ZBACKUP_DEF_EX( Ex, "ZBackup exception", std::exception )
+  ZBACKUP_DEF_EX_STR( exWontOverwrite, "Won't overwrite existing file", Ex )
+  ZBACKUP_DEF_EX( exStdinError, "Error reading from standard input", Ex )
+  ZBACKUP_DEF_EX( exWontReadFromTerminal, "Won't read data from a terminal", exStdinError )
+  ZBACKUP_DEF_EX( exStdoutError, "Error writing to standard output", Ex )
+  ZBACKUP_DEF_EX( exWontWriteToTerminal, "Won't write data to a terminal", exStdoutError )
+  ZBACKUP_DEF_EX( exSerializeError, "Failed to serialize data", Ex )
+  ZBACKUP_DEF_EX( exParseError, "Failed to parse data", Ex )
+  ZBACKUP_DEF_EX( exChecksumError, "Checksum error", Ex )
+  ZBACKUP_DEF_EX_STR( exCantDeriveStorageDir, "The path must be within the backups/ dir:", Ex )
 
   /// Opens the storage
   ZBackupBase( std::string const & storageDir, std::string const & password );

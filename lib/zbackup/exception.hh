@@ -1,8 +1,8 @@
 // Copyright (c) 2012-2014 Konstantin Isakov <ikm@zbackup.org> and ZBackup contributors, see CONTRIBUTORS
 // Part of ZBackup. Licensed under GNU GPLv2 or later + OpenSSL, see LICENSE
 
-#ifndef EX_HH_INCLUDED__
-#define EX_HH_INCLUDED__
+#ifndef ZBACKUP_PUBLIC__EXCEPTION_HH_INCLUDED__
+#define ZBACKUP_PUBLIC__EXCEPTION_HH_INCLUDED__
 
 #include <exception>
 #include <stdio.h>
@@ -10,25 +10,25 @@
 
 /// A way to declare an exception class fast
 /// Do like this:
-/// DEF_EX( exErrorInFoo, "An error in foo encountered", std::exception )
-/// DEF_EX( exFooNotFound, "Foo was not found", exErrorInFoo )
+/// ZBACKUP_DEF_EX( exErrorInFoo, "An error in foo encountered", std::exception )
+/// ZBACKUP_DEF_EX( exFooNotFound, "Foo was not found", exErrorInFoo )
 
-#define DEF_EX( exName, exDescription, exParent ) \
+#define ZBACKUP_DEF_EX( exName, exDescription, exParent ) \
 class exName: public exParent { \
 public: \
 virtual const char * what() const throw() { return (exDescription); } \
 virtual ~exName() throw() {} };
 
-/// Same as DEF_EX, but takes a runtime string argument, which gets concatenated
+/// Same as ZBACKUP_DEF_EX, but takes a runtime string argument, which gets concatenated
 /// with the description.
 /// 
-///   DEF_EX_STR( exCantOpen, "can't open file", std::exception )
+///   ZBACKUP_DEF_EX_STR( exCantOpen, "can't open file", std::exception )
 ///   ...
 ///   throw exCantOpen( "example.txt" );
 ///
 ///   what() would return "can't open file example.txt"
 
-#define DEF_EX_STR( exName, exDescription, exParent ) \
+#define ZBACKUP_DEF_EX_STR( exName, exDescription, exParent ) \
 class exName: public exParent { \
   std::string value; \
 public: \

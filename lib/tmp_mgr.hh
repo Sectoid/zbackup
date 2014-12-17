@@ -7,8 +7,9 @@
 #include <exception>
 #include <string>
 
+#include <zbackup/exception.hh>
+
 #include "dir.hh"
-#include "ex.hh"
 #include "file.hh"
 #include "nocopy.hh"
 #include "sptr.hh"
@@ -43,9 +44,9 @@ class TmpMgr: NoCopy
   string path;
 public:
 
-  DEF_EX( Ex, "Temporary file manager exception", std::exception )
-  DEF_EX_STR( exCantCreate, "Can't create a temporary file in dir", Ex )
-  DEF_EX_STR( exWontOverwrite, "Won't overwrite existing file", Ex )
+  ZBACKUP_DEF_EX( Ex, "Temporary file manager exception", std::exception )
+  ZBACKUP_DEF_EX_STR( exCantCreate, "Can't create a temporary file in dir", Ex )
+  ZBACKUP_DEF_EX_STR( exWontOverwrite, "Won't overwrite existing file", Ex )
 
   /// Creates the given directory if it doesn't exist already and uses it to
   /// store temporary files.

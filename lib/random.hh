@@ -4,12 +4,10 @@
 #ifndef RANDOM_HH_INCLUDED__
 #define RANDOM_HH_INCLUDED__
 
-#include <exception>
-
-#include "ex.hh"
+#include <zbackup/exception.hh>
 
 namespace Random {
-DEF_EX( exCantGenerate, "Error generating random sequence, try later", std::exception )
+ZBACKUP_DEF_EX( exCantGenerate, "Error generating random sequence, try later", std::exception )
 
 /// This one fills the buffer with true randomness, suitable for a key
 void generateTrue( void * buf, unsigned size );
