@@ -3,6 +3,7 @@ CMakeFiles/
 CMakeCache.txt
 Makefile
 cmake_install.cmake
-/zbackup.pb.cc
-/zbackup.pb.h
+/lib/zbackup.pb.cc
+/lib/zbackup.pb.h
 /zbackup
+/lib/libzbackup.*

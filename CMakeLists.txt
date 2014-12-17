@@ -4,8 +4,12 @@
 cmake_minimum_required( VERSION 2.8.2 )
 project( zbackup )
 
-set( CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" )
+set( ZBACKUP_MAJOR_VERSION 1 )
+set( ZBACKUP_MINOR_VERSION 4 )
+set( ZBACKUP_PATCH_VERSION 1 )
+set( ZBACKUP_VERSION ${ZBACKUP_MAJOR_VERSION}.${ZBACKUP_MINOR_VERSION}.${ZBACKUP_PATCH_VERSION} )
 
+set( CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" )
 set( CMAKE_BUILD_TYPE Release )
 
 find_package( ZLIB REQUIRED )
@@ -24,8 +28,6 @@ IF(${PROTOBUF_PROTOC_CHECK} STREQUAL "PROTOBUF_PROTOC_CHECK-NOTFOUND")
     MESSAGE(FATAL_ERROR "Could not find protobuf compiler. Make sure protobuf-compiler package is installed.")
 ENDIF(${PROTOBUF_PROTOC_CHECK} STREQUAL "PROTOBUF_PROTOC_CHECK-NOTFOUND")
 
-PROTOBUF_GENERATE_CPP( protoSrcs protoHdrs zbackup.proto )
-
 find_package( Threads REQUIRED )
 
 find_package( LibLZMA REQUIRED )
@@ -39,16 +41,5 @@ else (LIBLZO_FOUND)
   set(LIBLZO_LIBRARIES)
 endif (LIBLZO_FOUND)
 
-file( GLOB sourceFiles "*.cc" )
-add_executable( zbackup ${sourceFiles} ${protoSrcs} ${protoHdrs} )
-
-target_link_libraries( zbackup
-  ${PROTOBUF_LIBRARIES}
-  ${OPENSSL_LIBRARIES}
-  ${CMAKE_THREAD_LIBS_INIT}
-  ${ZLIB_LIBRARIES}
-  ${LIBLZMA_LIBRARIES}
-  ${LIBLZO_LIBRARIES}
-)
-
-install( TARGETS zbackup DESTINATION bin )
+add_subdirectory (lib)
+# add_subdirectory (tartool)
